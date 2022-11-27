@@ -1,7 +1,11 @@
+import { PageHeader } from '../../components/PageHeader';
 import {} from './styles';
 
 export function EditContact() {
   return (
-    <div>edit contact</div>
+    <div>
+      <PageHeader title="Editar João Hideki" />
+      edit contact
+    </div>
   );
 }
