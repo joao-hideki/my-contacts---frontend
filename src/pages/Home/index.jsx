@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import {
   Card, Container, Header, ListContainer, InputSearchContainer,
 } from './styles';
@@ -16,7 +17,7 @@ export function Home() {
       </InputSearchContainer>
       <Header>
         <strong>X contatos</strong>
-        <a href="/">Novo contato</a>
+        <Link to="/new">Novo contato</Link>
       </Header>
       <ListContainer>
         <header>
@@ -35,81 +36,9 @@ export function Home() {
             <span>(11) 99999-9999</span>
           </div>
           <div className="actions">
-            <a href="/">
+            <Link to="/edit/1">
               <img src={edit} alt="edit" />
-            </a>
-            <button type="button">
-              <img src={trash} alt="trash" />
-            </button>
-          </div>
-        </Card>
-        <Card>
-          <div className="info">
-            <div>
-              <strong>João Hideki</strong>
-              <small>Instagram</small>
-            </div>
-            <span>joao@email.com</span>
-            <span>(11) 99999-9999</span>
-          </div>
-          <div className="actions">
-            <a href="/">
-              <img src={edit} alt="edit" />
-            </a>
-            <button type="button">
-              <img src={trash} alt="trash" />
-            </button>
-          </div>
-        </Card>
-        <Card>
-          <div className="info">
-            <div>
-              <strong>João Hideki</strong>
-              <small>Instagram</small>
-            </div>
-            <span>joao@email.com</span>
-            <span>(11) 99999-9999</span>
-          </div>
-          <div className="actions">
-            <a href="/">
-              <img src={edit} alt="edit" />
-            </a>
-            <button type="button">
-              <img src={trash} alt="trash" />
-            </button>
-          </div>
-        </Card>
-        <Card>
-          <div className="info">
-            <div>
-              <strong>João Hideki</strong>
-              <small>Instagram</small>
-            </div>
-            <span>joao@email.com</span>
-            <span>(11) 99999-9999</span>
-          </div>
-          <div className="actions">
-            <a href="/">
-              <img src={edit} alt="edit" />
-            </a>
-            <button type="button">
-              <img src={trash} alt="trash" />
-            </button>
-          </div>
-        </Card>
-        <Card>
-          <div className="info">
-            <div>
-              <strong>João Hideki</strong>
-              <small>Instagram</small>
-            </div>
-            <span>joao@email.com</span>
-            <span>(11) 99999-9999</span>
-          </div>
-          <div className="actions">
-            <a href="/">
-              <img src={edit} alt="edit" />
-            </a>
+            </Link>
             <button type="button">
               <img src={trash} alt="trash" />
             </button>
