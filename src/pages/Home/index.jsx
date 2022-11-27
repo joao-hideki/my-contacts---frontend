@@ -1,11 +1,9 @@
 import { Container } from './styles';
-import { Header } from '../../components/Header';
-import { ContactsList } from '../../components/Contact';
+import { ContactsList } from '../../components/ContactList';
 
 export function Home() {
   return (
     <Container>
-      <Header />
       <ContactsList />
     </Container>
   );

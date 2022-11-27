@@ -9,7 +9,7 @@ export function ContactsList() {
   return (
     <Container>
       <Header>
-        <strong>N contatos</strong>
+        <strong>X contatos</strong>
         <a href="/">Novo contato</a>
       </Header>
       <ListContainer>
