@@ -52,23 +52,27 @@ export function ContactForm({ buttonLabel }) {
     }
   }
 
-  console.log(errors);
+  function getErrorMessageByFielName(fielName) {
+    return errors.find((error) => error.field === fielName)?.message;
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFielName('name')}>
         <Input
           placeholder="Nome"
           value={name}
           onChange={handleNameChange}
+          error={getErrorMessageByFielName('name')}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFielName('email')}>
         <Input
           placeholder="Email"
           value={email}
           onChange={handleEmailChange}
+          error={getErrorMessageByFielName('email')}
         />
       </FormGroup>
 
