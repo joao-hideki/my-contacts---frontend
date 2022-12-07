@@ -63,7 +63,10 @@ export const ListHeader = styled.header`
     color: ${({ theme }) => theme.colors.primary.main};
   }
 
-
+  img {
+    transform: rotate(${({ orderBy }) => (orderBy === 'asc' ? '540deg' : '0deg')});
+    transition: transform 0.7s ease-in;
+  }
 `;
 export const Card = styled.div`
   background-color: #fff;
