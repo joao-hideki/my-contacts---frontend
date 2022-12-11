@@ -10,6 +10,7 @@ import {
   InputSearchContainer,
   ErrorContainer,
   EmpyListContainer,
+  SearchNotFoundContainer,
 } from './styles';
 import Button from '../../components/Button';
 import arrow from '../../assets/images/icons/arrow.svg';
@@ -17,6 +18,7 @@ import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 import sad from '../../assets/images/sad.svg';
 import emptyBox from '../../assets/images/empty-box.svg';
+import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 import { Loader } from '../../components/Loader';
 import ContactsServices from '../../services/ContactsServices';
 // import { Modal } from '../../components/Modal';
@@ -38,7 +40,6 @@ export function Home() {
       const contactsList = await ContactsServices.listContacts(orderBy);
       setHasError(false);
       setContacts(contactsList);
-      setContacts([]);
     } catch {
       setHasError(true);
     } finally {
@@ -106,12 +107,23 @@ export function Home() {
             <EmpyListContainer>
               <img src={emptyBox} alt="empty box" />
               <p>
-                {/* eslint-disable react/jsx-one-expression-per-line */}
-                Você ainda não tem nenhum contato cadastrado!
-                Clique no botão <strong>”Novo contato”</strong> à cima
-                para cadastrar o seu primeiro!
+                Você ainda não tem nenhum contato cadastrado! Clique no botão
+                {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                <strong>”Novo contato”</strong>
+                à cima para cadastrar o seu primeiro!
               </p>
             </EmpyListContainer>
+          )}
+
+          {(contacts.length > 0 && filteredContacts.length < 1) && (
+            <SearchNotFoundContainer>
+              <img src={magnifierQuestion} alt="magnifier question" />
+              <span>
+                Nenhum resultado foi encontrado para
+                {/* eslint-disable-next-line react/jsx-one-expression-per-line */}
+                <strong> ”{searchTerm}”.</strong>
+              </span>
+            </SearchNotFoundContainer>
           )}
 
           {filteredContacts.length > 0 && (
