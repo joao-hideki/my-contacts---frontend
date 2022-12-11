@@ -9,7 +9,7 @@ import formatPhone from '../../utils/formatPhone';
 import useErrors from '../../hooks/useErrors';
 import CategoriesService from '../../services/CategoriesService';
 
-export function ContactForm({ buttonLabel }) {
+export function ContactForm({ buttonLabel, onSubmit }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -40,7 +40,7 @@ export function ContactForm({ buttonLabel }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({
+    onSubmit({
       name, email, phone, categoryId,
     });
   }
@@ -99,7 +99,7 @@ export function ContactForm({ buttonLabel }) {
         />
       </FormGroup>
 
-      <FormGroup isLoading>
+      <FormGroup isLoading={isLoadingCategories}>
         <Select
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value)}
