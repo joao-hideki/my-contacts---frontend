@@ -19,7 +19,7 @@ import trash from '../../assets/images/icons/trash.svg';
 import sad from '../../assets/images/sad.svg';
 import emptyBox from '../../assets/images/empty-box.svg';
 import magnifierQuestion from '../../assets/images/magnifier-question.svg';
-import { Loader } from '../../components/Loader';
+import Loader from '../../components/Loader';
 import ContactsService from '../../services/ContactsService';
 // import { Modal } from '../../components/Modal';
 
