@@ -9,12 +9,14 @@ import {
   ListHeader,
   InputSearchContainer,
   ErrorContainer,
+  EmpyListContainer,
 } from './styles';
 import Button from '../../components/Button';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
 import sad from '../../assets/images/sad.svg';
+import emptyBox from '../../assets/images/empty-box.svg';
 import { Loader } from '../../components/Loader';
 import ContactsServices from '../../services/ContactsServices';
 // import { Modal } from '../../components/Modal';
@@ -36,6 +38,7 @@ export function Home() {
       const contactsList = await ContactsServices.listContacts(orderBy);
       setHasError(false);
       setContacts(contactsList);
+      setContacts([]);
     } catch {
       setHasError(true);
     } finally {
@@ -54,6 +57,7 @@ export function Home() {
   function handleChangeSearchTerm(e) {
     setSearchTerm(e.target.value);
   }
+
   function handleTryAgain() {
     loadContacts();
   }
@@ -62,16 +66,23 @@ export function Home() {
     <Container>
       {/* <Modal danger /> */}
       <Loader isLoading={isLoading} />
-      <InputSearchContainer>
-        <input
-          type="text"
-          placeholder="Pesquisar contato"
-          value={searchTerm}
-          onChange={handleChangeSearchTerm}
-        />
-      </InputSearchContainer>
-      <Header hasError={hasError}>
-        {!hasError && (
+      {contacts.length > 0 && (
+        <InputSearchContainer>
+          <input
+            type="text"
+            placeholder="Pesquisar contato"
+            value={searchTerm}
+            onChange={handleChangeSearchTerm}
+          />
+        </InputSearchContainer>
+      )}
+      <Header
+        justifyContent={
+          // eslint-disable-next-line no-nested-ternary
+          hasError ? 'flex-end' : (contacts.length > 0 ? 'space-between' : 'center')
+        }
+      >
+        {(!hasError && contacts.length > 0) && (
           <strong>
             {filteredContacts.length}
             {filteredContacts.length === 1 ? ' contato' : ' contatos'}
@@ -91,6 +102,18 @@ export function Home() {
 
       {!hasError && (
         <>
+          {(contacts.length < 1 && !isLoading) && (
+            <EmpyListContainer>
+              <img src={emptyBox} alt="empty box" />
+              <p>
+                {/* eslint-disable react/jsx-one-expression-per-line */}
+                Você ainda não tem nenhum contato cadastrado!
+                Clique no botão <strong>”Novo contato”</strong> à cima
+                para cadastrar o seu primeiro!
+              </p>
+            </EmpyListContainer>
+          )}
+
           {filteredContacts.length > 0 && (
           <ListHeader orderBy={orderBy}>
             <button type="button" onClick={handleToggleOrderBy}>
@@ -99,6 +122,7 @@ export function Home() {
             </button>
           </ListHeader>
           )}
+
           {filteredContacts.map((contact) => (
             <Card key={contact.id}>
               <div className="info">
