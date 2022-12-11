@@ -20,7 +20,7 @@ import sad from '../../assets/images/sad.svg';
 import emptyBox from '../../assets/images/empty-box.svg';
 import magnifierQuestion from '../../assets/images/magnifier-question.svg';
 import { Loader } from '../../components/Loader';
-import ContactsServices from '../../services/ContactsServices';
+import ContactsService from '../../services/ContactsService';
 // import { Modal } from '../../components/Modal';
 
 export function Home() {
@@ -37,7 +37,7 @@ export function Home() {
   const loadContacts = useCallback(async () => {
     try {
       setIsLoading(true);
-      const contactsList = await ContactsServices.listContacts(orderBy);
+      const contactsList = await ContactsService.listContacts(orderBy);
       setHasError(false);
       setContacts(contactsList);
     } catch {
