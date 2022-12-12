@@ -84,6 +84,10 @@ export const Card = styled.div`
     margin-top: 16px;
   }
 
+  &:last-child {
+    margin-bottom: 100px;
+  }
+
   .info{
     div {
       display: flex;

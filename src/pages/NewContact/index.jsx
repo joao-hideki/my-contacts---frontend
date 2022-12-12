@@ -10,8 +10,11 @@ export function NewContact() {
         name: newContactData.name,
         email: newContactData.email,
         phone: newContactData.phone,
-        category_id: newContactData.categoryId,
+        // category_id: newContactData.categoryId,
       };
+      if (newContactData.categoryId !== '') {
+        // adicionar newContactData.categoryId no objeto newContact
+      }
       const response = await ContactsService.createContacts(newContact);
       console.log(response);
     } catch {}
