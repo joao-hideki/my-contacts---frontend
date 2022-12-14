@@ -49,6 +49,10 @@ export function ContactForm({ buttonLabel, onSubmit }) {
     });
 
     setIsSubmitting(false);
+    setName('');
+    setEmail('');
+    setPhone('');
+    setCategoryId('');
   }
 
   function handleNameChange(e) {
