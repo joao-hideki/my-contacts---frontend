@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import arrow from '../../assets/images/icons/arrow.svg';
 
-export function PageHeader({ title }) {
+export default function PageHeader({ title }) {
   return (
     <Container>
       <Link to="/">
