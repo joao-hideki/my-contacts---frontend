@@ -36,6 +36,31 @@ export function EditContact() {
     loadContact();
   }, [id, navigate]);
 
+  async function handleSubmit(editedContactData) {
+    try {
+      const editedContact = {
+        name: editedContactData.name,
+        email: editedContactData.email,
+        phone: editedContactData.phone,
+        category_id: editedContactData.categoryId,
+      };
+
+      const updatedContact = await ContactsService.updateContact(id, editedContact);
+
+      setContactName(updatedContact.name);
+
+      toast({
+        type: 'success',
+        text: 'Contato editado com sucesso!',
+      });
+    } catch {
+      toast({
+        type: 'danger',
+        text: 'Ocorreu um erro ao editar o contato!',
+      });
+    }
+  }
+
   return (
     <>
       <Loader isLoading={isLoading} />
@@ -45,6 +70,7 @@ export function EditContact() {
       <ContactForm
         ref={contactFormRef}
         buttonLabel="Salvar Alterações"
+        onSubmit={handleSubmit}
       />
     </>
   );

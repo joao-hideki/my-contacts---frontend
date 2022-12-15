@@ -17,10 +17,12 @@ class ContactsServices {
     return this.httpClient.get(`/contacts/${id}`);
   }
 
-  createContacts(newContactData) {
-    return this.httpClient.post('/contacts', {
-      body: newContactData,
-    });
+  createContact(newContactData) {
+    return this.httpClient.post('/contacts', { body: newContactData });
+  }
+
+  updateContact(id, editedContactData) {
+    return this.httpClient.put(`/contacts/${id}`, { body: editedContactData });
   }
 }
 
