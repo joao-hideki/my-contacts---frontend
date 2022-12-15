@@ -24,8 +24,9 @@ export const StyledButton = styled.button`
   }
 
   &[disabled] {
-    background-color: #ccc;
-    cursor: default;
+    // quando o botão estiver desabilitado vai prevalecer a estilização do disabled
+    background-color: #ccc !important;
+    cursor: default !important;
   }
 
   ${({ danger, theme }) => danger && css`

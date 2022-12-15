@@ -10,7 +10,11 @@ export default function Modal({
   confirmLabel = 'Confirmar',
   onCancel,
   onConfirm,
+  isOpen,
+  isLoading = false,
 }) {
+  if (!isOpen) return null;
+
   return createPortal(
     <Overlay>
       <Container danger={danger}>
@@ -21,6 +25,7 @@ export default function Modal({
             className="cancel-button"
             type="button"
             onClick={onCancel}
+            disabled={isLoading}
           >
             {cancelLabel}
           </button>
@@ -28,6 +33,7 @@ export default function Modal({
             type="button"
             danger
             onClick={onConfirm}
+            isLoading={isLoading}
           >
             {confirmLabel}
           </Button>
