@@ -46,5 +46,6 @@ export const Container = styled.div`
       &[disabled] {
         cursor: default;
       }
+    }
   }
 `;
