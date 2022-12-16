@@ -5,6 +5,7 @@ import PageHeader from '../../components/PageHeader';
 import ContactsService from '../../services/ContactsService';
 import Loader from '../../components/Loader';
 import toast from '../../utils/toast';
+import useIsMounted from '../../hooks/useIsMounted';
 
 export function EditContact() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,6 +14,7 @@ export function EditContact() {
 
   const { id } = useParams();
   const navigate = useNavigate();
+  const isMounted = useIsMounted();
 
   useEffect(() => {
     async function loadContact() {
@@ -20,21 +22,25 @@ export function EditContact() {
         setIsLoading(true);
         const contact = await ContactsService.getContactById(id);
 
-        contactFormRef.current.setFieldsValues(contact);
-        setContactName(contact.name);
+        if (isMounted()) {
+          contactFormRef.current.setFieldsValues(contact);
+          setContactName(contact.name);
 
-        setIsLoading(false);
+          setIsLoading(false);
+        }
       } catch {
-        navigate('/');
-        toast({
-          type: 'danger',
-          text: 'Contato não encontrado',
-        });
+        if (isMounted()) {
+          navigate('/');
+          toast({
+            type: 'danger',
+            text: 'Contato não encontrado',
+          });
+        }
       }
     }
 
     loadContact();
-  }, [id, navigate]);
+  }, [id, navigate, isMounted]);
 
   async function handleSubmit(editedContactData) {
     try {
